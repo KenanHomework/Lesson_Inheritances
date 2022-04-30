@@ -11,13 +11,24 @@ namespace Lesson_Inheritances
     {
         public string MediaName { get; set; }
 
-        public int SizeOfMedia { get; set; }
-
         public string Model { get; set; }
 
-        public int Memory { get; set; }
+        public int Speed { get; set; }
 
-        public string Data { get; set; }
+        private int memory;
+
+        public int Memory
+        {
+            get => memory;
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException("Value must greater than zero!");
+                memory = value;
+            }
+        }
+
+        public string Data { get; set; } = "";
 
 
 
@@ -39,9 +50,19 @@ namespace Lesson_Inheritances
             Console.WriteLine(Model);
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Size: ");
+            Console.Write("Data Size: ");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write($"{Size} {MType.ToString()}");
+            Console.WriteLine($"{Data.Length} MB");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Memory: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"{Memory} MB");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Free Memory: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{FreeMemory()}");
 
             Console.ResetColor();
         }
