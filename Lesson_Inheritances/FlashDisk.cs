@@ -28,7 +28,7 @@ namespace Lesson_Inheritances
         {
             MediaName = "Flash Disk";
             Model = model;
-            Speed = speedUSB;
+            Speed = (int)speedUSB;
             try
             {
                 Memory = memoryMB;
@@ -37,7 +37,7 @@ namespace Lesson_Inheritances
             {
                 Console.WriteLine($"\a\a\n\n\n\t\t{ex.Message}\n at {model}");
             }
-            Speed = speedUSB;
+            Speed = (int)speedUSB;
             Data = data;
 
         }
@@ -61,7 +61,16 @@ namespace Lesson_Inheritances
 
         public override void Copy(Storage otherDevice)
         {
-            UI.LoadingAnimation(otherDevice.MediaName, otherDevice.Model, this.MediaName, this.Model, otherDevice.Data.Length / (int)Speed);
+
+            Animations animations = new();
+
+            //animations.Turn("Preaparing...", new Location(23, 59 - 13), 40);
+
+            while (true)
+            {
+                animations.LoadingBar("Preaparing....", new Location(23, 59 - 13));
+            }
+
         }
 
 
