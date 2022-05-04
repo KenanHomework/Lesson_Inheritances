@@ -34,20 +34,27 @@ namespace Lesson_Inheritances
 
         public void Copy(Storage otherDevice)
         {
-            //Console.Clear();
-            //Animations.Turn("Preaparing...", new Location(15, 59 - 13), 30);
-            //Thread.Sleep(75);
-            //Console.Clear();
-            //Animations.Turn($"{otherDevice.MediaName}...",
-            //    new Location(15, 59 - (otherDevice.MediaName.Length + 3)), 15);
-            //Thread.Sleep(75);
-            //Console.Clear();
-            //Animations.Turn($"{otherDevice.Model} ~ Preaparing...",
-            //    new Location(15, 59 - (otherDevice.Model.Length + 16)), 15);
-            //Thread.Sleep(75);
-            //Console.Clear();
-            //Animations.Turn($"Data Transfer Starting...", new Location(15, 59 - 23), 20);
-            //this.Data = otherDevice.Data;
+            Console.Clear();
+            Animations.Turn("Preaparing...", new Location(15, 59 - 13), 30);
+            Thread.Sleep(75);
+            Console.Clear();
+            Animations.Turn($"{otherDevice.MediaName}...",
+                new Location(15, 59 - (otherDevice.MediaName.Length + 3)), 15);
+            Thread.Sleep(75);
+            Console.Clear();
+            Animations.Turn($"{otherDevice.Model} ~ Preaparing...",
+                new Location(15, 59 - (otherDevice.Model.Length + 16)), 15);
+            Thread.Sleep(75);
+            Console.Clear();
+            if (otherDevice.Data.Length > FreeMemory())
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Data is biggest than free memory !");
+                Console.ResetColor();
+                return;
+            }
+            Animations.Turn($"Data Transfer Starting...", new Location(15, 59 - 23), 20);
+            this.Data = otherDevice.Data;
             Thread.Sleep(75);
             Console.Clear();
             Animations.LoadingBar("Copying...", new Location(15, 59 - 7), otherDevice.Data.Length / this.Speed);
