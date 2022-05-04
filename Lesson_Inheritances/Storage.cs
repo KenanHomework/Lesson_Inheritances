@@ -32,7 +32,27 @@ namespace Lesson_Inheritances
 
 
 
-        public virtual void Copy(Storage otherDevice) { }
+        public void Copy(Storage otherDevice)
+        {
+            //Console.Clear();
+            //Animations.Turn("Preaparing...", new Location(15, 59 - 13), 30);
+            //Thread.Sleep(75);
+            //Console.Clear();
+            //Animations.Turn($"{otherDevice.MediaName}...",
+            //    new Location(15, 59 - (otherDevice.MediaName.Length + 3)), 15);
+            //Thread.Sleep(75);
+            //Console.Clear();
+            //Animations.Turn($"{otherDevice.Model} ~ Preaparing...",
+            //    new Location(15, 59 - (otherDevice.Model.Length + 16)), 15);
+            //Thread.Sleep(75);
+            //Console.Clear();
+            //Animations.Turn($"Data Transfer Starting...", new Location(15, 59 - 23), 20);
+            //this.Data = otherDevice.Data;
+            Thread.Sleep(75);
+            Console.Clear();
+            Animations.LoadingBar("Copying...", new Location(15, 59 - 7), otherDevice.Data.Length / this.Speed);
+            this.Data = otherDevice.Data;
+        }
 
         public int FreeMemory() => Memory - Data.Length;
 

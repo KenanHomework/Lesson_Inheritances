@@ -21,16 +21,9 @@ namespace Lesson_Inheritances
 
     }
 
-    public class Animations
+    public abstract class Animations
     {
-        int counter;
-
-        public Animations()
-        {
-            counter = 0;
-        }
-
-        public void Turn(string loadingText, Location location, int loopCount)
+        static public void Turn(string loadingText, Location location, int loopCount)
         {
             Console.CursorVisible = false;
             for (int i = 0; i < loopCount; i++)
@@ -50,15 +43,15 @@ namespace Lesson_Inheritances
             }
         }
 
-        public void LoadingBar(string loadingTxt, Location location)
+        static public void LoadingBar(string loadingTxt, Location location, int time)
         {
             Console.CursorVisible = false;
             Console.SetCursorPosition(location.Column, location.Row);
             string loadingText = loadingTxt + " [";
-            string loadingTextTerminator = "                   ]";
+            string loadingTextTerminator = "                 ]";
             Console.Write(loadingText + loadingTextTerminator);
 
-            for (int i = 0; i < 18 % 20; i++)
+            for (int i = 0; i < 16; i++)
             {
                 if (i == 0)
                 {
@@ -67,16 +60,14 @@ namespace Lesson_Inheritances
                 }
 
                 Console.SetCursorPosition(location.Column + loadingText.Length + i, location.Row);
-                Console.Write("*");
-                Thread.Sleep(75);
+                Console.Write('*');
+
+                Thread.Sleep(time / 18);
             }
         }
 
-        public void Ready()
-        {
-            counter++;
-            System.Threading.Thread.Sleep(75);
-        }
+
     }
 }
+
 
