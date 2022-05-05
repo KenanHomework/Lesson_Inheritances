@@ -59,6 +59,14 @@ namespace Lesson_Inheritances
             Console.Clear();
             Animations.LoadingBar("Copying...", new Location(15, 59 - 7), otherDevice.Data.Length / this.Speed);
             this.Data = otherDevice.Data;
+            Thread.Sleep(75);
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.SetCursorPosition(50, 13);
+            Console.Write("Succes !");
+            Thread.Sleep(1451);
+            Console.Clear();
+            Console.ResetColor();
         }
 
         public int FreeMemory() => Memory - Data.Length;
